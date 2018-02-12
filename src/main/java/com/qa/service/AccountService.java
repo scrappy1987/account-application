@@ -31,4 +31,14 @@ public class AccountService {
 		return accountMap;
 	}
 
+	public int getNumberOfAccountWithFirstName(String firstNameOfAccount) {
+		int count = 0;
+		for (Account eachAccount : accountMap.values()) {
+			if (eachAccount.getFirstName().equals(firstNameOfAccount)) {
+				++count;
+			}
+		}
+		return count;
+	}
+
 }

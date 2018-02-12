@@ -50,8 +50,12 @@ public class AccountServiceTest {
 
 	@Test
 	public void getCountForFirstNamesInAccount() {
-		int numberOfAccountsWithJohn = service.getNumberOfAccountWithFirstName("John");
-		Assert.assertEquals(numberOfAccountsWithJohn, 1);
+		Assert.assertEquals(service.getNumberOfAccountWithFirstName("Joe"), 0);
+		service.addAccountFromMap(joeBloggs);
+		Assert.assertEquals(service.getNumberOfAccountWithFirstName("Joe"), 1);
+		Account joeGordon = new Account("Joe", "Gordon", "1234");
+		service.addAccountFromMap(joeGordon);
+		Assert.assertEquals(service.getNumberOfAccountWithFirstName("Joe"), 2);
 	}
 
 }
