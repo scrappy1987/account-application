@@ -15,7 +15,7 @@ import com.qa.domain.Account;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
-public class AccountDBRepository {
+public class AccountDBRepository implements AccountRepository {
 
 	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
@@ -23,12 +23,14 @@ public class AccountDBRepository {
 	@Inject
 	private JSONUtil util;
 
+	@Override
 	public String getAllAccounts() {
 		Query query = manager.createQuery("Select a FROM Account a");
 		Collection<Account> accounts = (Collection<Account>) query.getResultList();
 		return util.getJSONForObject(accounts);
 	}
 
+	@Override
 	@Transactional(REQUIRED)
 	public String createAccount(String accout) {
 		Account anAccount = util.getObjectForJSON(accout, Account.class);
@@ -36,6 +38,7 @@ public class AccountDBRepository {
 		return "{\"message\": \"account has been sucessfully added\"}";
 	}
 
+	@Override
 	@Transactional(REQUIRED)
 	public String updateAccount(Long id, String accountToUpdate) {
 		Account updatedAccount = util.getObjectForJSON(accountToUpdate, Account.class);
@@ -47,6 +50,7 @@ public class AccountDBRepository {
 		return "{\"message\": \"account sucessfully updated\"}";
 	}
 
+	@Override
 	@Transactional(REQUIRED)
 	public String deleteAccount(Long id) {
 		Account accountInDB = findAccount(id);
