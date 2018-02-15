@@ -1,9 +1,5 @@
 package com.qa.service.repository;
 
-import static javax.transaction.Transactional.TxType.REQUIRED;
-
-import javax.transaction.Transactional;
-
 public interface AccountRepository {
 
 	String getAllAccounts();
