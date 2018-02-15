@@ -7,8 +7,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 
-import org.apache.log4j.Logger;
-
 import com.qa.domain.Account;
 import com.qa.util.JSONUtil;
 
@@ -16,7 +14,6 @@ import com.qa.util.JSONUtil;
 @Alternative
 public class AccountMapRepository implements AccountRepository {
 
-	private static final Logger LOGGER = Logger.getLogger(AccountMapRepository.class);
 	private final Long INITIAL_COUNT = 1L;
 	private Map<Long, Account> accountMap;
 	private Long ID;

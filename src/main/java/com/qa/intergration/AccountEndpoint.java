@@ -9,45 +9,45 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.qa.service.repository.AccountRepository;
+import com.qa.service.business.AccountService;
 
 @Path("/account")
 public class AccountEndpoint {
 
 	@Inject
-	private AccountRepository repo;
+	private AccountService service;
 
 	@Path("/json")
 	@GET
 	@Produces({ "application/json" })
 	public String getAllAccounts() {
-		return repo.getAllAccounts();
+		return service.getAllAccounts();
 	}
 
 	@Path("/json")
 	@POST
 	@Produces({ "application/json" })
 	public String addAccount(String account) {
-		return repo.createAccount(account);
+		return service.addAccount(account);
 	}
 
 	@Path("/json/{id}")
 	@PUT
 	@Produces({ "application/json" })
 	public String updateAccount(@PathParam("id") Long id, String account) {
-		return repo.updateAccount(id, account);
+		return service.updateAccount(id, account);
 	}
 
 	@Path("/json/{id}")
 	@DELETE
 	@Produces({ "application/json" })
 	public String deleteAccount(@PathParam("id") Long id) {
-		return repo.deleteAccount(id);
+		return service.deleteAccount(id);
 
 	}
 
-	public void setRepo(AccountRepository repo) {
-		this.repo = repo;
+	public void setService(AccountService service) {
+		this.service = service;
 	}
 
 }
