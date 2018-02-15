@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Account {
@@ -11,8 +12,11 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Long id;
+	@Size(min = 2, max = 80)
 	private String firstName;
+	@Size(min = 2, max = 80)
 	private String secondName;
+	@Size(min = 4, max = 4)
 	private String accountNumber;
 
 	public Account() {
